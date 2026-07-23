@@ -1,0 +1,118 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Base resets & root variables ─────────────────────────────────────────── */
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  :root {
+    --scrollbar-width: 6px;
+    --scrollbar-color: rgba(59, 130, 246, 0.4);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-surface-950 text-slate-100 font-sans;
+    min-height: 100vh;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar { width: var(--scrollbar-width); }
+  ::-webkit-scrollbar-track { @apply bg-surface-900; }
+  ::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-color);
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover { @apply bg-brand-500; }
+
+  /* Focus ring */
+  :focus-visible {
+    @apply outline-none ring-2 ring-brand-500 ring-offset-2 ring-offset-surface-900 rounded-lg;
+  }
+
+  /* Selection */
+  ::selection { @apply bg-brand-600 text-white; }
+}
+
+/* ── Component utilities ──────────────────────────────────────────────────── */
+@layer components {
+
+  /* Glass card */
+  .glass-card {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Primary button */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2
+           bg-brand-gradient text-white font-semibold
+           px-6 py-3 rounded-xl
+           hover:opacity-90 active:scale-95
+           transition-all duration-200
+           disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100
+           shadow-glow;
+  }
+
+  /* Ghost button */
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2
+           text-slate-300 font-medium
+           px-6 py-3 rounded-xl border border-white/10
+           hover:bg-white/5 hover:text-white active:scale-95
+           transition-all duration-200;
+  }
+
+  /* Input field */
+  .input-field {
+    @apply w-full bg-white/5 border border-white/10 rounded-xl
+           px-4 py-3 text-white placeholder-slate-400
+           focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent
+           transition-all duration-200;
+  }
+
+  /* Label */
+  .form-label {
+    @apply block text-sm font-medium text-slate-300 mb-1.5;
+  }
+
+  /* Error text */
+  .field-error {
+    @apply mt-1 text-sm text-red-400;
+  }
+
+  /* Section gradient divider */
+  .gradient-divider {
+    @apply h-px bg-gradient-to-r from-transparent via-brand-500/30 to-transparent;
+  }
+
+  /* Glow orb decorative element */
+  .glow-orb {
+    @apply absolute rounded-full blur-3xl opacity-20 pointer-events-none;
+  }
+}
+
+/* ── Utility overrides ────────────────────────────────────────────────────── */
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-brand-400 to-blue-300;
+  }
+
+  .bg-glass {
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+
+  .clip-path-wave {
+    clip-path: ellipse(100% 55% at 50% 44%);
+  }
+}
