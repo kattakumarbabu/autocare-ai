@@ -2,7 +2,7 @@ import axios from 'axios';
 import { tokenStorage } from '../utils/tokenStorage';
 
 const axiosInstance = axios.create({
-  baseURL: '/api',           // Vite proxy handles /api → localhost:5000/api
+  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:5000/api',           // Vite proxy handles /api → localhost:5000/api
   timeout: 10_000,
   headers: { 'Content-Type': 'application/json' },
 });
